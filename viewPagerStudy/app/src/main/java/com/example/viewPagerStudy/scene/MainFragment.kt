@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
       Profile(R.drawable.angmond, "앙몬드", "쪼꼬렛"),
       Profile(R.drawable.scapy, "스카피", "놀기"),
       Profile(R.drawable.muji, "무지", "토끼"),
-      Profile(R.drawable.angmond, "앙몬드", "쪼꼬렛"),
+      Profile(R.drawable.apeach, "어피치", "복숭아"),
       Profile(R.drawable.tube, "튜브", "잠자기")
     )
     mainViewAdapter = MainViewAdapter()
