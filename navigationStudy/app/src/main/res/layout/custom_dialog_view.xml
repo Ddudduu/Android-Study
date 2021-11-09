@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="20dp">
+
+    <TextView
+      android:id="@+id/titleLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/black"
+      android:textSize="17sp"
+      android:textStyle="bold"
+      tools:text="제목" />
+
+    <TextView
+      android:id="@+id/contentLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:textColor="@color/black"
+      android:textSize="15sp"
+      tools:text="내용" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginTop="20dp"
+      android:orientation="horizontal">
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/okButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:text="확인"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="#96C7C1" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancleButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="취소"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="#96C7C1" />
+    </LinearLayout>
+  </LinearLayout>
+</layout>
