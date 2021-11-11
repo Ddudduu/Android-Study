@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="10dp">
+
+    <ImageView
+      android:id="@+id/image"
+      android:layout_width="90dp"
+      android:layout_height="90dp"
+      app:srcCompat="@drawable/chunsik" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+      <LinearLayout
+        android:id="@+id/nameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="이름: "
+          android:textColor="@color/black"
+          android:textSize="15sp" />
+
+        <TextView
+          android:id="@+id/name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="춘식이"
+          android:textColor="@color/black"
+          android:textSize="15sp" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/favoriteContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="좋아하는 것: "
+          android:textColor="@color/black"
+          android:textSize="15sp" />
+
+        <TextView
+          android:id="@+id/favorite"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="고구마"
+          android:textColor="@color/black"
+          android:textSize="15sp" />
+      </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+  </LinearLayout>
+</layout>
