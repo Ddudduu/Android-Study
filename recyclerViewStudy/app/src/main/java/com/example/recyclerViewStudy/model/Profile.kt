@@ -1,4 +1,4 @@
-package com.example.viewPagerStudy.model
+package com.example.recyclerViewStudy.model
 
 class Profile(
   val image: Int,

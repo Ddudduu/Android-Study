@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerViewStudy.databinding.CharacterItemViewBinding
-import com.example.viewPagerStudy.model.Profile
+import com.example.recyclerViewStudy.model.Profile
 
 class CharacterListAdapter(private val dataSet: MutableList<Profile>) : RecyclerView.Adapter<CharacterListAdapter.ViewHolder>() {
   private lateinit var binding: CharacterItemViewBinding

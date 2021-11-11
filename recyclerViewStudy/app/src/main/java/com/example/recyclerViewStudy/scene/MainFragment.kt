@@ -1,17 +1,14 @@
 package com.example.recyclerViewStudy.scene
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerViewStudy.R
 import com.example.recyclerViewStudy.base.BaseNavigationFragment
 import com.example.recyclerViewStudy.databinding.MainFragmentBinding
-import com.example.viewPagerStudy.model.Profile
-import java.security.PrivateKey
+import com.example.recyclerViewStudy.model.Profile
 
 class MainFragment : BaseNavigationFragment(R.layout.main_fragment) {
   private lateinit var binding: MainFragmentBinding
