@@ -37,8 +37,24 @@ class MainFragment : BaseNavigationFragment(R.layout.main_fragment) {
       Profile(R.drawable.neo, "네오", "거울보기"),
       Profile(R.drawable.panda, "팬다주니어", "놀기"),
     )
+
+    val dataSet2 = mutableListOf(
+      Profile(R.drawable.chunsik, "춘식이", "고구마"),
+      Profile(R.drawable.scapy, "스카피", "요리"),
+      Profile(R.drawable.muji, "무지", "토끼"),
+      Profile(R.drawable.angmond, "앙몬드", "초콜릿"),
+      Profile(R.drawable.apeach, "어피치", "복숭아"),
+    )
+
     characterListAdapter = CharacterListAdapter(dataSet = dataSet)
     binding.recyclerView.adapter = characterListAdapter
     binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+//    binding.title.setOnClickListener {
+//      dataSet.clear()
+//      dataSet.addAll(dataSet2)
+//      //characterListAdapter.notifyItemRangeChanged(0,5)
+//      characterListAdapter.notifyDataSetChanged()
+//    }
   }
 }
