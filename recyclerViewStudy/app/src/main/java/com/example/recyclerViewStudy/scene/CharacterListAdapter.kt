@@ -2,13 +2,13 @@ package com.example.recyclerViewStudy.scene
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerViewStudy.databinding.CharacterItemViewBinding
 import com.example.recyclerViewStudy.model.Profile
 
-class CharacterListAdapter(private val dataSet: MutableList<Profile>) : RecyclerView.Adapter<CharacterListAdapter.ViewHolder>() {
-  private lateinit var binding: CharacterItemViewBinding
-
+class CharacterListAdapter : ListAdapter<Profile, CharacterListAdapter.ViewHolder>(CharacterListDiffCallback) {
   inner class ViewHolder(private val binding: CharacterItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(profile: Profile) {
       binding.apply {
@@ -19,16 +19,22 @@ class CharacterListAdapter(private val dataSet: MutableList<Profile>) : Recycler
     }
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterListAdapter.ViewHolder {
-    binding = CharacterItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    val binding = CharacterItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     return ViewHolder(binding)
   }
 
-  override fun onBindViewHolder(holder: CharacterListAdapter.ViewHolder, position: Int) {
-    holder.bind(dataSet[position])
+  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    holder.bind(getItem(position))
   }
 
-  override fun getItemCount(): Int {
-    return dataSet.size
+  object CharacterListDiffCallback : DiffUtil.ItemCallback<Profile>() {
+    override fun areItemsTheSame(oldItem: Profile, newItem: Profile): Boolean {
+      return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Profile, newItem: Profile): Boolean {
+      return oldItem.uuid == newItem.uuid
+    }
   }
 }

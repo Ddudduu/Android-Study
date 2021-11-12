@@ -12,7 +12,11 @@ import com.example.recyclerViewStudy.model.Profile
 
 class MainFragment : BaseNavigationFragment(R.layout.main_fragment) {
   private lateinit var binding: MainFragmentBinding
+
+  private lateinit var characterRecyclerViewAdapter: CharacterRecyclerViewAdapter
   private lateinit var characterListAdapter: CharacterListAdapter
+  private lateinit var dataSet: MutableList<Profile>
+  private lateinit var dataSet2: MutableList<Profile>
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = MainFragmentBinding.inflate(inflater, container, false)
@@ -21,11 +25,37 @@ class MainFragment : BaseNavigationFragment(R.layout.main_fragment) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    setData()
+
+//    // RecyclerView.Adapter 활용
+//    characterRecyclerViewAdapter = CharacterRecyclerViewAdapter(dataSet = dataSet)
+//    binding.recyclerView.adapter = characterRecyclerViewAdapter
+//    binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//
+//    // 클릭 시 데이터 변경
 //    binding.title.setOnClickListener {
-//      showDialog("캐릭터 정보", "확인을 누르면 캐릭터 정보가 나타납니다.") { binding.recyclerView.visibility = View.VISIBLE }
+//      dataSet.clear()
+//      dataSet.addAll(dataSet2)
+//      //characterRecyclerViewAdapter.notifyItemRangeChanged(0,5)
+//      characterRecyclerViewAdapter.notifyDataSetChanged()
 //    }
 
-    val dataSet = mutableListOf(
+
+    // ListAdapter 활용
+    characterListAdapter = CharacterListAdapter().apply {
+      submitList(dataSet)
+    }
+    binding.recyclerView.adapter = characterListAdapter
+    binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+    binding.title.setOnClickListener {
+      characterListAdapter.submitList(dataSet2)
+    }
+
+  }
+
+  private fun setData() {
+    dataSet = mutableListOf(
       Profile(R.drawable.angmond, "앙몬드", "초콜릿"),
       Profile(R.drawable.apeach, "어피치", "복숭아"),
       Profile(R.drawable.chunsik, "춘식이", "고구마"),
@@ -38,23 +68,12 @@ class MainFragment : BaseNavigationFragment(R.layout.main_fragment) {
       Profile(R.drawable.panda, "팬다주니어", "놀기"),
     )
 
-    val dataSet2 = mutableListOf(
+    dataSet2 = mutableListOf(
       Profile(R.drawable.chunsik, "춘식이", "고구마"),
       Profile(R.drawable.scapy, "스카피", "요리"),
       Profile(R.drawable.muji, "무지", "토끼"),
       Profile(R.drawable.angmond, "앙몬드", "초콜릿"),
       Profile(R.drawable.apeach, "어피치", "복숭아"),
     )
-
-    characterListAdapter = CharacterListAdapter(dataSet = dataSet)
-    binding.recyclerView.adapter = characterListAdapter
-    binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-//    binding.title.setOnClickListener {
-//      dataSet.clear()
-//      dataSet.addAll(dataSet2)
-//      //characterListAdapter.notifyItemRangeChanged(0,5)
-//      characterListAdapter.notifyDataSetChanged()
-//    }
   }
 }
