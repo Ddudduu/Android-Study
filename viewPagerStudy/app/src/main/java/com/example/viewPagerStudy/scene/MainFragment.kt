@@ -17,6 +17,9 @@ class MainFragment : Fragment() {
   private lateinit var mainViewAdapter: MainViewAdapter
   private lateinit var profileList: MutableList<Profile>
 
+  private var currentPosition: Int = 0
+  private var scrollState: Int = 0
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = MainFragmentBinding.inflate(inflater, container, false)
     return binding.root
@@ -42,19 +45,48 @@ class MainFragment : Fragment() {
   private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
     override fun onPageScrollStateChanged(state: Int) {
       super.onPageScrollStateChanged(state)
-      Log.w("$$$0 ", "$state")
+      handleScrollState(state)
+      scrollState = state
+    }
+
+    private fun handleScrollState(state: Int) {
+      if (state == ViewPager2.SCROLL_STATE_IDLE && scrollState == ViewPager2.SCROLL_STATE_DRAGGING) {
+        setNextItemIfNeeded()
+      }
+    }
+
+    private fun setNextItemIfNeeded() {
+      // settle 이 아니라면 다음 화면 넘어가기
+      if (!isScrollStateSettling()) {
+        handleSetNextItem()
+      }
+    }
+
+    private fun isScrollStateSettling(): Boolean {
+      return scrollState == ViewPager2.SCROLL_STATE_SETTLING
+    }
+
+    private fun handleSetNextItem() {
+      val lastPosition = binding.viewPager.adapter?.itemCount?.minus(1)
+
+      // 첫번째 화면이면 마지막 화면으로
+      if (currentPosition == 0) {
+        if (lastPosition != null) {
+          binding.viewPager.setCurrentItem(lastPosition, false)
+        }
+        // 마지막 화면이면 첫번째 화면으로
+      } else if (currentPosition == lastPosition) {
+        binding.viewPager.setCurrentItem(0, false)
+      }
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
       super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-      Log.w("$$$1 ", "$position")
-      Log.w("$$$2 ", "$positionOffset")
-      Log.w("$$$3 ", "$positionOffsetPixels")
     }
 
     override fun onPageSelected(position: Int) {
       super.onPageSelected(position)
-      Log.w("$$$4 ", "$position")
+      currentPosition = position
     }
   }
 }
